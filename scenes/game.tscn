@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://brgipnyhivoa5"]
 
 [ext_resource type="PackedScene" uid="uid://bututiudovybv" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://b7mxgemdpg4w7" path="res://scenes/ball.tscn" id="2_yqjtg"]
 
 [node name="game" type="Node2D" unique_id=561386549]
 
@@ -10,3 +11,6 @@ motion_mode = 1
 
 [node name="camera" type="Camera2D" parent="." unique_id=287122934]
 zoom = Vector2(0.5, 0.5)
+
+[node name="ball" parent="." unique_id=1369433731 instance=ExtResource("2_yqjtg")]
+scale = Vector2(0.45, 0.45)
