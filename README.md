@@ -1,1 +1,1 @@
-# Very-Serious-Juniper-Dev-Game-Jam-2026-Submission
+# Very Serious Juniper Dev Game Jam 2026 Submission
