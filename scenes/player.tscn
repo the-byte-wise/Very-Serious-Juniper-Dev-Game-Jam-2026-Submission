@@ -4,16 +4,17 @@
 [ext_resource type="Script" uid="uid://4nlt8qjvtqak" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rio0h"]
-size = Vector2(280, 39.870064)
+size = Vector2(232, 31)
 
 [node name="player" type="CharacterBody2D" unique_id=1795376769]
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=708535707]
+position = Vector2(26, 0)
 texture = ExtResource("1_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=51460085]
-position = Vector2(0.9038067, 0.9038067)
-rotation = -0.7853982
+position = Vector2(14, 3.5527137e-15)
+rotation = -1.5707964
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_rio0h")

@@ -1,25 +1,17 @@
 extends CharacterBody2D
 
+const ROTATION_SPEED = 3.0
+const RADIUS = 600.0
+const CENTER = Vector2.ZERO
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+var angle: float = PI
 
+func _ready():
+	global_position = CENTER + Vector2(cos(angle), sin(angle)) * RADIUS
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
+	var direction = Input.get_axis("rotate_c_clockwise", "rotate_clockwise")
+	
+	angle += direction * ROTATION_SPEED * delta
+	global_position = CENTER + Vector2(cos(angle), sin(angle)) * RADIUS
+	look_at(CENTER)
