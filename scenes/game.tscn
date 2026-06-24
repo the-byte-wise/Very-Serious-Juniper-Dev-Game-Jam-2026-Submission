@@ -1,16 +1,124 @@
 [gd_scene format=3 uid="uid://brgipnyhivoa5"]
 
+[ext_resource type="Script" uid="uid://dk4vbi84sbwi3" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bututiudovybv" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Shader" uid="uid://dpyegd6e8sdg5" path="res://assets/shaders/crt_with_scanlines_harrison_allen.gdshader" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://b7mxgemdpg4w7" path="res://scenes/ball.tscn" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://dk7qighn4rdkj" path="res://assets/borders.png" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://csfultvr5v2ij" path="res://scenes/angel.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://dnpfsbytpc43g" path="res://scenes/number.tscn" id="7_u5sy4"]
+
+[sub_resource type="Gradient" id="Gradient_yqjtg"]
+colors = PackedColorArray(0.14901961, 0.16862746, 0.26666668, 1, 0.14901961, 0.16862746, 0.26666668, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rio0h"]
+gradient = SubResource("Gradient_yqjtg")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lnu2h"]
+viewport_path = NodePath("ColorRect/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
+resource_local_to_scene = true
+shader = ExtResource("2_lnu2h")
+shader_parameter/tex = SubResource("ViewportTexture_lnu2h")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.6510000071725
+shader_parameter/wobble_strength = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_lbhrr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1085, -660, 0, 0, 0, 0, 1083, -660, 0, 0, 0, 0, 1083, 715, 0, 0, 0, 0, -1085, 715, 0, 0, 0, 0, -1085, -660)
+}
+point_count = 5
 
 [node name="game" type="Node2D" unique_id=561386549]
-
-[node name="player" parent="." unique_id=1795376769 instance=ExtResource("1_uwrxv")]
-position = Vector2(-400, 0)
-motion_mode = 1
+script = ExtResource("1_iywne")
 
 [node name="camera" type="Camera2D" parent="." unique_id=287122934]
-zoom = Vector2(0.5, 0.5)
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="camera" unique_id=1884650130]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="permabackground" type="ColorRect" parent="camera/CanvasLayer" unique_id=989198640]
+offset_right = 1920.0
+offset_bottom = 1080.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-960, -540)
+color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+
+[node name="player" parent="." unique_id=1795376769 instance=ExtResource("1_uwrxv")]
+position = Vector2(-336, 0)
+scale = Vector2(0.75, 0.75)
+collision_layer = 2
+collision_mask = 255
+motion_mode = 1
 
 [node name="ball" parent="." unique_id=1369433731 instance=ExtResource("2_yqjtg")]
-scale = Vector2(0.45, 0.45)
+position = Vector2(-518, -653)
+scale = Vector2(0.75, 0.75)
+collision_mask = 2
+
+[node name="ball2" parent="." unique_id=486027307 instance=ExtResource("2_yqjtg")]
+position = Vector2(-717, 879.00006)
+scale = Vector2(0.75, 0.75)
+collision_mask = 2
+
+[node name="ball3" parent="." unique_id=953757055 instance=ExtResource("2_yqjtg")]
+position = Vector2(1101, 1379)
+scale = Vector2(0.75, 0.75)
+collision_mask = 2
+
+[node name="background" type="Sprite2D" parent="." unique_id=1008683989]
+visible = false
+z_index = -1
+scale = Vector2(7.5000005, 1080.0001)
+texture = SubResource("GradientTexture1D_rio0h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1219158174]
+visible = false
+material = SubResource("ShaderMaterial_lbhrr")
+custom_maximum_size = Vector2(1280, 720)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="ColorRect" unique_id=169897462]
+size = Vector2i(1920, 1080)
+
+[node name="overlay" type="Sprite2D" parent="." unique_id=452884159]
+texture = ExtResource("4_lbhrr")
+
+[node name="spawn_path" type="Path2D" parent="." unique_id=1396504902]
+position = Vector2(0.63285255, 0)
+scale = Vector2(0.63284135, 1)
+curve = SubResource("Curve2D_lbhrr")
+
+[node name="spawn_path_follow" type="PathFollow2D" parent="spawn_path" unique_id=1149280443]
+unique_name_in_owner = true
+position = Vector2(-1085, -660)
+
+[node name="Timer" type="Timer" parent="." unique_id=760758348]
+autostart = true
+
+[node name="angel" parent="." unique_id=1750035801 instance=ExtResource("6_p57ef")]
+scale = Vector2(0.5, 0.5)
+
+[node name="seconds_ones" parent="." unique_id=612173287 instance=ExtResource("7_u5sy4")]
+position = Vector2(-720, -185)
+
+[node name="seconds_tens" parent="." unique_id=39656015 instance=ExtResource("7_u5sy4")]
+position = Vector2(-770, -185)
+
+[node name="minutes_ones" parent="." unique_id=887123964 instance=ExtResource("7_u5sy4")]
+position = Vector2(-870, -185)

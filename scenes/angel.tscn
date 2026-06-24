@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://csfultvr5v2ij"]
+
+[ext_resource type="Script" uid="uid://clfx4ys43nr4l" path="res://scripts/angel.gd" id="1_8whfh"]
+[ext_resource type="Texture2D" uid="uid://dqwvduaeh7vgr" path="res://assets/angel.png" id="1_jgnly"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rio0h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jgnly")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ai33v"]
+size = Vector2(140, 220)
+
+[node name="angel" type="Area2D" unique_id=1750035801]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_8whfh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070866694]
+sprite_frames = SubResource("SpriteFrames_rio0h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=242246657]
+light_mask = 15
+visibility_layer = 15
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_ai33v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
