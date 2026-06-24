@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://csfultvr5v2ij"]
 
-[ext_resource type="Script" uid="uid://clfx4ys43nr4l" path="res://scripts/angel.gd" id="1_8whfh"]
 [ext_resource type="Texture2D" uid="uid://dqwvduaeh7vgr" path="res://assets/angel.png" id="1_jgnly"]
+[ext_resource type="Script" uid="uid://clfx4ys43nr4l" path="res://scripts/angel.gd" id="1_mtvsi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rio0h"]
 animations = [{
@@ -20,7 +20,7 @@ size = Vector2(140, 220)
 [node name="angel" type="Area2D" unique_id=1750035801]
 collision_layer = 7
 collision_mask = 7
-script = ExtResource("1_8whfh")
+script = ExtResource("1_mtvsi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070866694]
 sprite_frames = SubResource("SpriteFrames_rio0h")

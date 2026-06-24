@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 const ROTATION_SPEED : float = 4.0
-const RADIUS : float = (540.0 / 2)
-const BOUNCE_FORCE : float = 600.0
+const RADIUS : float = (440.0 / 2)
+const BOUNCE_FORCE : float = 700.0
 
 var angle: float = PI
 

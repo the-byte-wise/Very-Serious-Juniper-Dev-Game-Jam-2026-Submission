@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dk4vbi84sbwi3" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bututiudovybv" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Shader" uid="uid://dpyegd6e8sdg5" path="res://assets/shaders/crt_with_scanlines_harrison_allen.gdshader" id="2_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://b7mxgemdpg4w7" path="res://scenes/ball.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://dk7qighn4rdkj" path="res://assets/borders.png" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://csfultvr5v2ij" path="res://scenes/angel.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://dnpfsbytpc43g" path="res://scenes/number.tscn" id="7_u5sy4"]
@@ -61,21 +60,6 @@ collision_layer = 2
 collision_mask = 255
 motion_mode = 1
 
-[node name="ball" parent="." unique_id=1369433731 instance=ExtResource("2_yqjtg")]
-position = Vector2(-518, -653)
-scale = Vector2(0.75, 0.75)
-collision_mask = 2
-
-[node name="ball2" parent="." unique_id=486027307 instance=ExtResource("2_yqjtg")]
-position = Vector2(-717, 879.00006)
-scale = Vector2(0.75, 0.75)
-collision_mask = 2
-
-[node name="ball3" parent="." unique_id=953757055 instance=ExtResource("2_yqjtg")]
-position = Vector2(1101, 1379)
-scale = Vector2(0.75, 0.75)
-collision_mask = 2
-
 [node name="background" type="Sprite2D" parent="." unique_id=1008683989]
 visible = false
 z_index = -1
@@ -108,7 +92,7 @@ curve = SubResource("Curve2D_lbhrr")
 unique_name_in_owner = true
 position = Vector2(-1085, -660)
 
-[node name="Timer" type="Timer" parent="." unique_id=760758348]
+[node name="ball_spawner" type="Timer" parent="spawn_path" unique_id=760758348]
 autostart = true
 
 [node name="angel" parent="." unique_id=1750035801 instance=ExtResource("6_p57ef")]
@@ -122,3 +106,7 @@ position = Vector2(-770, -185)
 
 [node name="minutes_ones" parent="." unique_id=887123964 instance=ExtResource("7_u5sy4")]
 position = Vector2(-870, -185)
+
+[node name="game_timer" type="Timer" parent="." unique_id=1995438971]
+
+[connection signal="timeout" from="spawn_path/ball_spawner" to="." method="_on_ball_spawner_timeout"]
