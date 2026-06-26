@@ -12,8 +12,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var collision : KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
+		%hit_paddle.play()
 		velocity = velocity.bounce(collision.get_normal())
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	print("Ball freed!")
 	queue_free()

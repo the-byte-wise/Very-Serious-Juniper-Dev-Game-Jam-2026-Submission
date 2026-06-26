@@ -2,16 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://dqwvduaeh7vgr" path="res://assets/angel.png" id="1_jgnly"]
 [ext_resource type="Script" uid="uid://clfx4ys43nr4l" path="res://scripts/angel.gd" id="1_mtvsi"]
+[ext_resource type="AudioStream" uid="uid://cfsghqob46evu" path="res://assets/sfx/hit-5.wav" id="3_6gyu6"]
+[ext_resource type="Texture2D" uid="uid://bpgqcnpu8mje0" path="res://assets/angel_down.png" id="3_whldq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rio0h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_jgnly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_whldq")
 }],
 "loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ai33v"]
@@ -23,12 +28,18 @@ collision_mask = 7
 script = ExtResource("1_mtvsi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1070866694]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_rio0h")
+frame_progress = 0.7621309
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=242246657]
 light_mask = 15
 visibility_layer = 15
 position = Vector2(-20, 0)
 shape = SubResource("RectangleShape2D_ai33v")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1853601521]
+unique_name_in_owner = true
+stream = ExtResource("3_6gyu6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

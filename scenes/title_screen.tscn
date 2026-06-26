@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cb2wbtd06nyri"]
+
+[ext_resource type="Script" uid="uid://bgx0s2g4obcu" path="res://scripts/title_screen.gd" id="1_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://cntqun43ywaoh" path="res://assets/title1.png" id="1_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://b3paqpo3b6b2r" path="res://assets/title2.png" id="2_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://dvqri5xoxip1e" path="res://assets/borders_notext.png" id="3_dc4i4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rio0h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s4lrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mgrm8")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="title_screen" type="Node2D" unique_id=1127081192]
+script = ExtResource("1_mgrm8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=840072785]
+sprite_frames = SubResource("SpriteFrames_rio0h")
+frame_progress = 0.20867121
+
+[node name="camera" type="Camera2D" parent="." unique_id=1721338862]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="camera" unique_id=1940015263]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="permabackground" type="ColorRect" parent="camera/CanvasLayer" unique_id=832891994]
+offset_right = 1920.0
+offset_bottom = 1080.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-960, -540)
+color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+
+[node name="BordersNotext" type="Sprite2D" parent="." unique_id=1378180890]
+texture = ExtResource("3_dc4i4")

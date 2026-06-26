@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c7m1canq60ccr"]
+
+[ext_resource type="Script" uid="uid://bjkeerktpy1o6" path="res://scripts/win_screen.gd" id="1_erk2x"]
+[ext_resource type="Texture2D" uid="uid://dvqri5xoxip1e" path="res://assets/borders_notext.png" id="2_0lrm4"]
+[ext_resource type="Texture2D" uid="uid://coarlh0nt06eq" path="res://assets/win.png" id="3_2l6cc"]
+
+[node name="Node2D" type="Node2D" unique_id=1127081192]
+script = ExtResource("1_erk2x")
+
+[node name="camera" type="Camera2D" parent="." unique_id=1721338862]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="camera" unique_id=1940015263]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="permabackground" type="ColorRect" parent="camera/CanvasLayer" unique_id=832891994]
+offset_right = 1920.0
+offset_bottom = 1080.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-960, -540)
+color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+
+[node name="BordersNotext" type="Sprite2D" parent="." unique_id=147919166]
+texture = ExtResource("2_0lrm4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2123243243]
+volume_db = -12.0
+autoplay = true
+
+[node name="Win" type="Sprite2D" parent="." unique_id=97586905]
+texture = ExtResource("3_2l6cc")

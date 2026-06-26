@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dk4vbi84sbwi3" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bututiudovybv" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://xgfbhx3gsuuu" path="res://assets/stars.png" id="2_gee14"]
 [ext_resource type="Shader" uid="uid://dpyegd6e8sdg5" path="res://assets/shaders/crt_with_scanlines_harrison_allen.gdshader" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://dk7qighn4rdkj" path="res://assets/borders.png" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://csfultvr5v2ij" path="res://scenes/angel.tscn" id="6_p57ef"]
+[ext_resource type="AudioStream" uid="uid://clb1udq0sn527" path="res://assets/music/battle_commences_loopable.wav" id="7_gee14"]
 [ext_resource type="PackedScene" uid="uid://dnpfsbytpc43g" path="res://scenes/number.tscn" id="7_u5sy4"]
 
 [sub_resource type="Gradient" id="Gradient_yqjtg"]
@@ -38,6 +40,15 @@ point_count = 5
 
 [node name="game" type="Node2D" unique_id=561386549]
 script = ExtResource("1_iywne")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=19791642]
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(100, 100)
+follow_viewport = false
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=2067799539]
+texture = ExtResource("2_gee14")
 
 [node name="camera" type="Camera2D" parent="." unique_id=287122934]
 unique_name_in_owner = true
@@ -84,7 +95,7 @@ size = Vector2i(1920, 1080)
 texture = ExtResource("4_lbhrr")
 
 [node name="spawn_path" type="Path2D" parent="." unique_id=1396504902]
-position = Vector2(0.63285255, 0)
+position = Vector2(-6.000003, -43)
 scale = Vector2(0.63284135, 1)
 curve = SubResource("Curve2D_lbhrr")
 
@@ -93,20 +104,55 @@ unique_name_in_owner = true
 position = Vector2(-1085, -660)
 
 [node name="ball_spawner" type="Timer" parent="spawn_path" unique_id=760758348]
+wait_time = 1.0999999999999999
 autostart = true
 
 [node name="angel" parent="." unique_id=1750035801 instance=ExtResource("6_p57ef")]
+unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 
 [node name="seconds_ones" parent="." unique_id=612173287 instance=ExtResource("7_u5sy4")]
+unique_name_in_owner = true
 position = Vector2(-720, -185)
 
 [node name="seconds_tens" parent="." unique_id=39656015 instance=ExtResource("7_u5sy4")]
+unique_name_in_owner = true
 position = Vector2(-770, -185)
 
 [node name="minutes_ones" parent="." unique_id=887123964 instance=ExtResource("7_u5sy4")]
+unique_name_in_owner = true
 position = Vector2(-870, -185)
 
 [node name="game_timer" type="Timer" parent="." unique_id=1995438971]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="life1" parent="." unique_id=855715307 instance=ExtResource("7_u5sy4")]
+unique_name_in_owner = true
+position = Vector2(-920, -395)
+
+[node name="life2" parent="." unique_id=704419474 instance=ExtResource("7_u5sy4")]
+unique_name_in_owner = true
+position = Vector2(-870, -395)
+
+[node name="life3" parent="." unique_id=353063900 instance=ExtResource("7_u5sy4")]
+unique_name_in_owner = true
+position = Vector2(-820, -395)
+
+[node name="bgm" type="AudioStreamPlayer" parent="." unique_id=1994038896]
+unique_name_in_owner = true
+stream = ExtResource("7_gee14")
+volume_db = -20.0
+autoplay = true
+
+[node name="progress_bar" type="ColorRect" parent="." unique_id=1158140867]
+unique_name_in_owner = true
+offset_left = -940.0
+offset_right = -940.0
+offset_bottom = 50.0
+color = Color(1, 0, 0.26666668, 1)
 
 [connection signal="timeout" from="spawn_path/ball_spawner" to="." method="_on_ball_spawner_timeout"]
+[connection signal="lose_life" from="angel" to="." method="_on_angel_lose_life"]
+[connection signal="timeout" from="game_timer" to="." method="_on_game_timer_timeout"]
+[connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]
