@@ -1,5 +1,5 @@
-# Very Serious Juniper Dev Game Jam 2026 Submission
-This is my submission for the Very Serious Junper Dev Game Jam. Currently there's no working title so I'm just naming this repo based off of the game jam and I'll rename it when the time comes.
+# Genesis
+This is my submission for the Very Serious Junper Dev Game Jam. I ended up settling on the name 'Genesis' due to the headcanon lore I have about this game.
 ## Theme
 The theme this year is "spin to win".
 ## Inspiration
