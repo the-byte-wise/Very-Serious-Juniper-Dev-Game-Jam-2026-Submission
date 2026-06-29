@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dk4vbi84sbwi3" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://bututiudovybv" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://xgfbhx3gsuuu" path="res://assets/stars.png" id="2_gee14"]
-[ext_resource type="Shader" uid="uid://dpyegd6e8sdg5" path="res://assets/shaders/crt_with_scanlines_harrison_allen.gdshader" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://dk7qighn4rdkj" path="res://assets/borders.png" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://csfultvr5v2ij" path="res://scenes/angel.tscn" id="6_p57ef"]
 [ext_resource type="AudioStream" uid="uid://clb1udq0sn527" path="res://assets/music/battle_commences_loopable.wav" id="7_gee14"]
@@ -14,23 +13,6 @@ colors = PackedColorArray(0.14901961, 0.16862746, 0.26666668, 1, 0.14901961, 0.1
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_rio0h"]
 gradient = SubResource("Gradient_yqjtg")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_lnu2h"]
-viewport_path = NodePath("ColorRect/SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbhrr"]
-resource_local_to_scene = true
-shader = ExtResource("2_lnu2h")
-shader_parameter/tex = SubResource("ViewportTexture_lnu2h")
-shader_parameter/mask_type = 1
-shader_parameter/curve = 0.0
-shader_parameter/sharpness = 0.6666667
-shader_parameter/color_offset = 0.0
-shader_parameter/mask_brightness = 1.0
-shader_parameter/scanline_brightness = 1.0
-shader_parameter/min_scanline_thickness = 0.5
-shader_parameter/aspect = 0.6510000071725
-shader_parameter/wobble_strength = 0.0
 
 [sub_resource type="Curve2D" id="Curve2D_lbhrr"]
 _data = {
@@ -78,20 +60,6 @@ visible = false
 z_index = -1
 scale = Vector2(7.5000005, 1080.0001)
 texture = SubResource("GradientTexture1D_rio0h")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1219158174]
-visible = false
-material = SubResource("ShaderMaterial_lbhrr")
-custom_maximum_size = Vector2(1280, 720)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="ColorRect" unique_id=169897462]
-size = Vector2i(1920, 1080)
 
 [node name="overlay" type="Sprite2D" parent="." unique_id=452884159]
 texture = ExtResource("4_lbhrr")

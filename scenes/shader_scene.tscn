@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bh2pwdycccexi"]
+
+[ext_resource type="Shader" uid="uid://dpyegd6e8sdg5" path="res://assets/shaders/crt_with_scanlines_harrison_allen.gdshader" id="1_md21r"]
+[ext_resource type="PackedScene" uid="uid://cb2wbtd06nyri" path="res://scenes/title_screen.tscn" id="2_yrile"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yrile"]
+viewport_path = NodePath("ColorRect/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_57d1g"]
+resource_local_to_scene = true
+shader = ExtResource("1_md21r")
+shader_parameter/tex = SubResource("ViewportTexture_yrile")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.0
+shader_parameter/sharpness = 0.6666667
+shader_parameter/color_offset = 0.0
+shader_parameter/mask_brightness = 1.0
+shader_parameter/scanline_brightness = 1.0
+shader_parameter/min_scanline_thickness = 0.5
+shader_parameter/aspect = 0.6510000071725
+shader_parameter/wobble_strength = 0.0
+
+[node name="Node2D" type="Node2D" unique_id=2133247037]
+
+[node name="RenderRectShader" type="ColorRect" parent="." unique_id=601228032]
+material = SubResource("ShaderMaterial_57d1g")
+custom_maximum_size = Vector2(1280, 720)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=914896829]
+snap_2d_transforms_to_pixel = true
+size = Vector2i(1920, 1080)
+
+[node name="SceneContainer" type="Node2D" parent="SubViewport" unique_id=936722182]
+
+[node name="title_screen" parent="SubViewport/SceneContainer" unique_id=1127081192 instance=ExtResource("2_yrile")]
