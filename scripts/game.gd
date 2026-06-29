@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var spawn_path_follow : PathFollow2D
 
-var lives : int = 3
+var lives : int = 5
 var round_time : float = 181 # add the extra second so player can see the 3:00
 
 func spawn_ball() -> void:
@@ -25,7 +25,11 @@ func update_progress_bar() -> void:
 	%progress_bar.size = Vector2(int((seconds_elapsed / round_time) * 390), %progress_bar.size.y)
 
 func update_lives() -> void:
-	if lives == 2:
+	if lives == 4:
+		%life5.change_number(10)
+	elif lives == 3:
+		%life4.change_number(10)
+	elif lives == 2:
 		%life3.change_number(10)
 	elif lives == 1:
 		%life2.change_number(10)
@@ -34,6 +38,8 @@ func _ready() -> void:
 	%life1.change_number(11)
 	%life2.change_number(11)
 	%life3.change_number(11)
+	%life4.change_number(11)
+	%life5.change_number(11)
 	%game_timer.start(round_time)
 	
 func _process(_delta : float) -> void:
@@ -42,11 +48,11 @@ func _process(_delta : float) -> void:
 	update_lives()
 	if lives <= 0:
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-	if Input.is_key_pressed(KEY_G):
-		lives = 999
-		%life1.change_number(9)
-		%life2.change_number(9)
-		%life3.change_number(9)
+	#if Input.is_key_pressed(KEY_G):
+		#lives = 999
+		#%life1.change_number(9)
+		#%life2.change_number(9)
+		#%life3.change_number(9)
 
 func _on_ball_spawner_timeout() -> void:
 	spawn_ball()

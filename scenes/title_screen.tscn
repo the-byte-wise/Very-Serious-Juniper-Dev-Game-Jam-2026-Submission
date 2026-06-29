@@ -24,7 +24,7 @@ script = ExtResource("1_mgrm8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=840072785]
 sprite_frames = SubResource("SpriteFrames_rio0h")
-frame_progress = 0.20867121
+frame_progress = 0.096569926
 
 [node name="camera" type="Camera2D" parent="." unique_id=1721338862]
 unique_name_in_owner = true
